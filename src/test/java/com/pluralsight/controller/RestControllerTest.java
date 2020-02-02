@@ -27,4 +27,14 @@ public class RestControllerTest {
 			System.out.println("Ride name: " + ride.getName());
 		}
 	}
+	
+	@Test(timeout=3000)
+	public void testcreateRides() {
+		RestTemplate restTemplate = new RestTemplate();
+		Ride ride = new Ride();
+		ride.setName("uber");
+		ride.setDuration(30);
+		String url = "http://localhost:8080/ride_tracker/ride";
+		restTemplate.put(url, ride);
+	}
 }

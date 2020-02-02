@@ -14,7 +14,10 @@ public class RideRepositoryImpl implements RideRepository {
 	
 	@Autowired
 	private JdbcTemplate template;
+	
 
+	
+	
 	@Override
 	public List<Ride> getRides() {
 		Ride ride = new Ride();
@@ -23,6 +26,15 @@ public class RideRepositoryImpl implements RideRepository {
 		List <Ride> rides = new ArrayList<>();
 		rides.add(ride);
 		return rides;
+	}
+
+
+
+
+	@Override
+	public Ride createRide(Ride ride) {
+		template.update("insert into ride ( name , duration ) values (?,?)", ride.getName() , ride.getDuration());
+		return null;
 	}
 	
 }
