@@ -32,9 +32,10 @@ public class RestControllerTest {
 	public void testcreateRides() {
 		RestTemplate restTemplate = new RestTemplate();
 		Ride ride = new Ride();
-		ride.setName("careem taxi");
+		ride.setName("stranger 2 ");
 		ride.setDuration(200);
 		String url = "http://localhost:8080/ride_tracker/ride";
-		restTemplate.put(url, ride);
+		Ride resultRide =restTemplate.postForObject(url, ride , Ride.class);
+		System.out.println(resultRide);
 	}
 }

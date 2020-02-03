@@ -21,8 +21,13 @@ public class RideServiceImpl implements RideService {
 	
 	@Override
 	public Ride createRide(Ride ride) {
-		// TODO Auto-generated method stub
 		rideRepository.createRide(ride);
 		return null;
+	}
+
+	@Override
+	public Ride getRide(Number number) {
+		Ride ride=rideRepository.getRide(number);
+		return ride;
 	}
 }
