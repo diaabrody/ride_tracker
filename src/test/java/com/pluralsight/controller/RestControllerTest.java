@@ -32,8 +32,8 @@ public class RestControllerTest {
 	public void testcreateRides() {
 		RestTemplate restTemplate = new RestTemplate();
 		Ride ride = new Ride();
-		ride.setName("uber");
-		ride.setDuration(30);
+		ride.setName("careem taxi");
+		ride.setDuration(200);
 		String url = "http://localhost:8080/ride_tracker/ride";
 		restTemplate.put(url, ride);
 	}
