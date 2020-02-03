@@ -21,13 +21,14 @@ public class RideServiceImpl implements RideService {
 	
 	@Override
 	public Ride createRide(Ride ride) {
-		rideRepository.createRide(ride);
-		return null;
+		return rideRepository.createRide(ride);
 	}
 
 	@Override
-	public Ride getRide(Number number) {
+	public Ride getRide(Integer number) {
 		Ride ride=rideRepository.getRide(number);
+		System.out.println(ride);
 		return ride;
 	}
+
 }

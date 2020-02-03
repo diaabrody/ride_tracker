@@ -35,7 +35,7 @@ public class RestControllerTest {
 		ride.setName("stranger 2 ");
 		ride.setDuration(200);
 		String url = "http://localhost:8080/ride_tracker/ride";
-		Ride resultRide =restTemplate.postForObject(url, ride , Ride.class);
-		System.out.println(resultRide);
+		ride =restTemplate.postForObject(url, ride , Ride.class);
+		System.out.println("ride is "+ ride);
 	}
 }

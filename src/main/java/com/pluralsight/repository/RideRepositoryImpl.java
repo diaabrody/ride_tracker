@@ -65,15 +65,13 @@ public class RideRepositoryImpl implements RideRepository {
 				return ps;
 			}
 		}, generatedKeyHolder);
-		
-		return getRide(generatedKeyHolder.getKey());
+		return getRide(generatedKeyHolder.getKey().intValue());
 	}
-
+	
 	@Override
-	public Ride getRide(Number number) {
+	public Ride getRide(Integer number) {
 		Ride ride =template.queryForObject("select * from ride where id = ?", new RideRowMapper() ,number);
 		return ride;
-
 	}
 
 }

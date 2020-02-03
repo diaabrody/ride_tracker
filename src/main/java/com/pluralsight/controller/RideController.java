@@ -25,8 +25,7 @@ public class RideController {
 	
 	@RequestMapping(value="/ride" , method=RequestMethod.POST)
 	public @ResponseBody  Ride  crearteRide(@RequestBody Ride ride) {
-		rideService.createRide(ride);
-		return null ;
+		return rideService.createRide(ride) ;
 	}
 	
 }
