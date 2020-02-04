@@ -28,17 +28,11 @@ public class RideRepositoryImpl implements RideRepository {
 	@Autowired
 	private JdbcTemplate template;
 	
-
-	
-	
 	@Override
 	public List<Ride> getRides() {
 		List<Ride> rides = template.query("select * from ride", new RideRowMapper());
 		return rides;
 	}
-
-
-
 
 	@Override
 	public Ride createRide(Ride ride) {
@@ -72,6 +66,19 @@ public class RideRepositoryImpl implements RideRepository {
 	public Ride getRide(Integer number) {
 		Ride ride =template.queryForObject("select * from ride where id = ?", new RideRowMapper() ,number);
 		return ride;
+	}
+
+	@Override
+	public Ride updateRide(Ride ride) {
+		String sql = "update ride set name=? , duration = ? where id = ?";
+		template.update(sql , ride.getName() , ride.getDuration() , ride.getId());
+		return ride;
+	}
+
+	@Override
+	public void updateRides(List<Object[]> pairs) {
+		String sql = "update ride set ride_date=? where id=?";
+		template.batchUpdate(sql, pairs);
 	}
 
 }
