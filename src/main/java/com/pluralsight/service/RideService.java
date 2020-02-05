@@ -11,5 +11,6 @@ public interface RideService {
 	Ride getRide(Integer number);
 	Ride updateRide(Ride ride);
 	void batch();
+	void delete(Integer id);
 
 }

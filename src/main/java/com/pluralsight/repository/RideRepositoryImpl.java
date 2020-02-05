@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -27,6 +28,8 @@ public class RideRepositoryImpl implements RideRepository {
 	
 	@Autowired
 	private JdbcTemplate template;
+	@Autowired
+	private NamedParameterJdbcTemplate namedParamTemplate ; 
 	
 	@Override
 	public List<Ride> getRides() {
@@ -79,6 +82,13 @@ public class RideRepositoryImpl implements RideRepository {
 	public void updateRides(List<Object[]> pairs) {
 		String sql = "update ride set ride_date=? where id=?";
 		template.batchUpdate(sql, pairs);
+	}
+	
+	@Override
+	public void delete(Integer id) {
+		Map<String , Object> paramMap = new HashMap<>();
+		paramMap.put("id", id);
+		namedParamTemplate.update("delete from ride where id = :id", paramMap);
 	}
 
 }

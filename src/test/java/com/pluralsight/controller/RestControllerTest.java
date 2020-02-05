@@ -28,7 +28,7 @@ public class RestControllerTest {
 		}
 	}
 	
-	@Test(timeout=3000)
+	@Test(timeout=5000)
 	public void testcreateRides() {
 		RestTemplate restTemplate = new RestTemplate();
 		Ride ride = new Ride();
@@ -62,4 +62,22 @@ public class RestControllerTest {
 		String url = "http://localhost:8080/ride_tracker/batch";
 		restTemplate.getForObject(url, Ride.class);
 	}
+	
+	@Test(timeout=3000)
+	public void testDelete() {
+		RestTemplate restTemplate = new RestTemplate();
+		String url = "http://localhost:8080/ride_tracker/ride/3";
+		restTemplate.delete(url);
+	}
+	
+	@Test(timeout=5000)
+	public void testError() {
+		RestTemplate restTemplate = new RestTemplate();
+		String url = "http://localhost:8080/ride_tracker/test";
+		restTemplate.getForObject(url, Ride.class);
+	}
+	
+	
+	
+	
 }
